@@ -10,6 +10,8 @@ const schema = z.object({
   phone: z.string().min(7, "Phone is required"),
   location: z.string().min(1, "Location is required"),
   nationality: z.string().min(1, "Nationality is required"),
+  linkedIn: z.string().url("Must be a valid URL").optional(),
+  dob: z.string().min(1, "Date of birth is required"),
 });
 
 export default function PersonalInfoForm() {
@@ -34,6 +36,8 @@ export default function PersonalInfoForm() {
         { name: "phone", label: "Phone", type: "tel" },
         { name: "location", label: "Location" },
         { name: "nationality", label: "Nationality" },
+        { name: "linkedIn", label: "LinkedIn", type: "url" },
+        { name: "dob", label: "Date of Birth", type: "date" },
       ].map(({ name, label, type = "text" }) => (
         <div key={name}>
           <label htmlFor={name} className="block text-sm font-medium">

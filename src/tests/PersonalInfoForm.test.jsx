@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import PersonalInfoForm from "../components/PersonalInfoForm";
 
 describe("PersonalInfoForm with RHF + Zod", () => {
-  test("submits valid personal info", async () => {
+  test("submits valid personal info with LinkedIn and DOB", async () => {
     render(<PersonalInfoForm />);
 
     fireEvent.input(screen.getByLabelText(/First Name/i), {
@@ -24,10 +24,16 @@ describe("PersonalInfoForm with RHF + Zod", () => {
     fireEvent.input(screen.getByLabelText(/Nationality/i), {
       target: { value: "Ugandan" },
     });
+    fireEvent.input(screen.getByLabelText(/LinkedIn/i), {
+      target: { value: "https://linkedin.com/in/daniel" },
+    });
+    fireEvent.input(screen.getByLabelText(/Date of Birth/i), {
+      target: { value: "1995-01-01" },
+    });
 
     fireEvent.click(screen.getByRole("button", { name: /next/i }));
 
-    // Expect the button click to not show validation errors (meaning form was valid)
+    // If the form is valid, there should be no validation messages
     expect(screen.queryByText(/required/i)).not.toBeInTheDocument();
   });
 });
