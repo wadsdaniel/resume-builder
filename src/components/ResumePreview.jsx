@@ -1,11 +1,6 @@
-// src/components/ResumePreview.jsx
 import React from "react";
 
-export default function ResumePreview({
-  personalInfo,
-  skills,
-  professionalSummary,
-}) {
+export default function ResumePreview({ personalInfo, skills }) {
   const {
     firstName,
     lastName,
@@ -19,73 +14,56 @@ export default function ResumePreview({
   } = personalInfo || {};
 
   return (
-    <div style={{ display: "flex", gap: "2rem" }}>
+    <div className="flex min-h-screen border rounded overflow-hidden">
       {/* Left Column */}
-      <div
-        style={{
-          flexBasis: "30%",
-          backgroundColor: "#f4f4f4",
-          padding: "1rem",
-          color: "#222",
-        }}
-        data-testid="left-column"
-      >
-        <h1 style={{ textTransform: "uppercase", fontWeight: "bold" }}>
-          {firstName} {lastName}
-        </h1>
-        <h2 style={{ textTransform: "uppercase", marginBottom: "1rem" }}>
-          {professionalTitle}
-        </h2>
+      <div className="w-1/3 bg-gray-100 text-black p-6 space-y-6">
+        {/* Name & Title */}
+        <div>
+          <h1 className="text-2xl font-bold uppercase">
+            {firstName} {lastName}
+          </h1>
+          <h2 className="text-sm font-semibold uppercase text-gray-700">
+            {professionalTitle}
+          </h2>
+        </div>
 
-        <section>
-          <h3>Contact</h3>
-          <p>{phone}</p>
-          <p>{email}</p>
-          <p>{location}</p>
-          <p>{dateOfBirth}</p>
-          <p>{nationality}</p>
-          <p>
-            <a href={linkedin} target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-          </p>
-        </section>
+        {/* Contact Section */}
+        <div>
+          <h3 className="uppercase font-semibold text-sm mb-2">Contact</h3>
+          <hr className="mb-2" />
+          <ul className="text-sm space-y-1">
+            <li>📞 {phone}</li>
+            <li>📧 {email}</li>
+            <li>📍 {location}</li>
+            <li>🎂 {dateOfBirth}</li>
+            <li>🌍 {nationality}</li>
+            <li>
+              🔗{" "}
+              <a href={linkedin} target="_blank" rel="noreferrer">
+                {linkedin}
+              </a>
+            </li>
+          </ul>
+        </div>
 
-        <section style={{ marginTop: "1rem" }}>
-          <h3>Skills</h3>
-          <ul>
-            {skills?.map((skill, index) => (
-              <li
-                key={index}
-                style={{ listStyleType: "disc", marginLeft: "1rem" }}
-              >
-                {skill}
-              </li>
+        {/* Skills Section */}
+        <div>
+          <h3 className="uppercase font-semibold text-sm mb-2">Skills</h3>
+          <hr className="mb-2" />
+          <ul className="text-sm list-disc list-inside">
+            {skills.map((skill, index) => (
+              <li key={index}>{skill}</li>
             ))}
           </ul>
-        </section>
+        </div>
       </div>
 
       {/* Right Column */}
-      <div
-        style={{
-          flexBasis: "65%",
-          backgroundColor: "white",
-          padding: "1rem",
-          color: "#222",
-        }}
-        data-testid="right-column"
-      >
-        {/* PROFESSIONAL SUMMARY SECTION */}
-        {professionalSummary && (
-          <section>
-            <h3 style={{ textTransform: "uppercase", fontWeight: "bold" }}>
-              Professional Summary
-            </h3>
-            <hr />
-            <p>{professionalSummary}</p>
-          </section>
-        )}
+      <div className="w-2/3 bg-white p-6">
+        {/* We'll add Professional Summary, Experience, Education, Hobbies here later */}
+        <p className="text-gray-400 italic">
+          Right column content coming soon…
+        </p>
       </div>
     </div>
   );
