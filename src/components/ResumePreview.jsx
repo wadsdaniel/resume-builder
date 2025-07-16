@@ -1,7 +1,11 @@
 // src/components/ResumePreview.jsx
 import React from "react";
 
-export default function ResumePreview({ personalInfo, skills }) {
+export default function ResumePreview({
+  personalInfo,
+  skills,
+  professionalSummary,
+}) {
   const {
     firstName,
     lastName,
@@ -50,15 +54,14 @@ export default function ResumePreview({ personalInfo, skills }) {
         <section style={{ marginTop: "1rem" }}>
           <h3>Skills</h3>
           <ul>
-            {skills &&
-              skills.map((skill, index) => (
-                <li
-                  key={index}
-                  style={{ listStyleType: "disc", marginLeft: "1rem" }}
-                >
-                  {skill}
-                </li>
-              ))}
+            {skills?.map((skill, index) => (
+              <li
+                key={index}
+                style={{ listStyleType: "disc", marginLeft: "1rem" }}
+              >
+                {skill}
+              </li>
+            ))}
           </ul>
         </section>
       </div>
@@ -73,7 +76,16 @@ export default function ResumePreview({ personalInfo, skills }) {
         }}
         data-testid="right-column"
       >
-        {/* Will implement right column later */}
+        {/* PROFESSIONAL SUMMARY SECTION */}
+        {professionalSummary && (
+          <section>
+            <h3 style={{ textTransform: "uppercase", fontWeight: "bold" }}>
+              Professional Summary
+            </h3>
+            <hr />
+            <p>{professionalSummary}</p>
+          </section>
+        )}
       </div>
     </div>
   );
