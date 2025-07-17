@@ -1,84 +1,98 @@
+import React from "react";
+
 export default function ResumePreview({
   personalInfo,
   skills,
   professionalSummary,
+  workExperience = [],
+  education = [],
+  hobbies = [],
 }) {
-  const {
-    firstName,
-    lastName,
-    professionalTitle,
-    phone,
-    email,
-    location,
-    dateOfBirth,
-    nationality,
-    linkedin,
-  } = personalInfo || {};
-
   return (
-    <div className="flex min-h-screen border rounded overflow-hidden">
+    <div className="flex w-full">
       {/* Left Column */}
-      <div className="w-1/3 bg-gray-100 text-black p-6 space-y-6">
-        {/* Name & Title */}
+      <div className="w-1/3 bg-gray-100 p-4 space-y-4">
         <div>
-          <h1 className="text-2xl font-bold uppercase">
-            {firstName} {lastName}
-          </h1>
-          <h2 className="text-sm font-semibold uppercase text-gray-700">
-            {professionalTitle}
+          <h2 className="text-lg font-bold">
+            {personalInfo.firstName} {personalInfo.lastName}
           </h2>
+          <p className="text-sm italic">{personalInfo.professionalTitle}</p>
         </div>
 
-        {/* Contact Section */}
-        <div>
-          <h3 className="uppercase font-semibold text-sm mb-2">Contact</h3>
-          <hr className="mb-2" />
-          <ul className="text-sm space-y-1">
-            <li>📞 {phone}</li>
-            <li>📧 {email}</li>
-            <li>📍 {location}</li>
-            <li>🎂 {dateOfBirth}</li>
-            <li>🌍 {nationality}</li>
-            <li>
-              🔗{" "}
-              <a href={linkedin} target="_blank" rel="noreferrer">
-                {linkedin}
-              </a>
-            </li>
-          </ul>
+        <div className="text-sm space-y-1">
+          <p>{personalInfo.phone}</p>
+          <p>{personalInfo.email}</p>
+          <p>{personalInfo.location}</p>
+          <p>{personalInfo.dateOfBirth}</p>
+          <p>{personalInfo.nationality}</p>
+          <p>{personalInfo.linkedin}</p>
         </div>
 
-        {/* Skills Section */}
         <div>
-          <h3 className="uppercase font-semibold text-sm mb-2">Skills</h3>
-          <hr className="mb-2" />
-          <ul className="text-sm list-disc list-inside">
-            {skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
+          <h3 className="font-semibold mt-4">Skills</h3>
+          <ul className="list-disc ml-5 text-sm">
+            {skills.map((skill, idx) => (
+              <li key={idx}>{skill}</li>
             ))}
           </ul>
         </div>
+
+        {hobbies.length > 0 && (
+          <div>
+            <h3 className="font-semibold mt-4">Hobbies</h3>
+            <ul className="list-disc ml-5 text-sm">
+              {hobbies.map((hobby, idx) => (
+                <li key={idx}>{hobby}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Right Column */}
-      <div className="w-2/3 bg-white p-6 space-y-6">
+      <div className="w-2/3 p-4 space-y-6">
         {/* Professional Summary */}
         {professionalSummary && (
-          <div>
-            <h3 className="text-lg font-semibold mb-2 uppercase">
-              Professional Summary
-            </h3>
-            <hr className="mb-2" />
-            <p className="text-sm text-gray-800 whitespace-pre-line">
-              {professionalSummary}
-            </p>
-          </div>
+          <section>
+            <h3 className="text-lg font-semibold">Professional Summary</h3>
+            <p className="text-sm">{professionalSummary}</p>
+          </section>
         )}
 
-        {/* Placeholder for other sections */}
-        <p className="text-gray-400 italic">
-          Experience and education coming soon…
-        </p>
+        {/* Work Experience */}
+        {workExperience.length > 0 && (
+          <section>
+            <h3 className="text-lg font-semibold">Work Experience</h3>
+            <ul className="space-y-4">
+              {workExperience.map((job, index) => (
+                <li key={index}>
+                  <p className="font-bold">{job.jobTitle}</p>
+                  <p className="italic text-sm">
+                    {job.employer} ({job.startDate} - {job.endDate})
+                  </p>
+                  <p className="text-sm">{job.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Education */}
+        {education.length > 0 && (
+          <section>
+            <h3 className="text-lg font-semibold">Education</h3>
+            <ul className="space-y-4">
+              {education.map((edu, index) => (
+                <li key={index}>
+                  <p className="font-bold">{edu.degree}</p>
+                  <p className="italic text-sm">
+                    {edu.institution} ({edu.startDate} - {edu.endDate})
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
     </div>
   );
