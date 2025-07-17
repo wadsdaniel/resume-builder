@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import EducationForm from "../components/EducationForm";
+import EducationForm from "../components/forms/EducationForm";
 
 describe("EducationForm with RHF + Zod", () => {
   test("allows adding an education entry", async () => {

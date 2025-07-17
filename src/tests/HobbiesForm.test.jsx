@@ -2,7 +2,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
-import HobbiesForm from "../components/HobbiesForm";
+import HobbiesForm from "../components/forms/HobbiesForm";
 
 describe("HobbiesForm with RHF + Zod", () => {
   test("allows adding and deleting hobbies, then submitting the list", async () => {
