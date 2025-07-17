@@ -1,13 +1,10 @@
-// import './App.css'
-import PersonalInfoForm from "./components/PersonalInfoForm";
-import SkillsForm from "./components/SkillsForm";
+import ResumeBuilder from "./pages/ResumeBuilder";
 
 function App() {
   return (
-    <>
-      <PersonalInfoForm />
-      <SkillsForm />
-    </>
+    <div className="min-h-screen bg-gray-100">
+      <ResumeBuilder />
+    </div>
   );
 }
 

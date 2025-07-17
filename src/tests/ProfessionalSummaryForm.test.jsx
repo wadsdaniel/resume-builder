@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
-import ProfessionalSummaryForm from "../components/ProfessionalSummaryForm";
+import ProfessionalSummaryForm from "../components/forms/ProfessionalSummaryForm";
 
 describe("ProfessionalSummaryForm with RHF + Zod", () => {
   test("allows entering and submitting professional summary", async () => {

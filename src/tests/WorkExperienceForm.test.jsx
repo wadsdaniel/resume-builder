@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import WorkExperienceForm from "../components/WorkExperienceForm";
+import WorkExperienceForm from "../components/forms/WorkExperienceForm";
 
 describe("WorkExperienceForm with RHF + Zod", () => {
   test("allows adding a job with or without end date", async () => {

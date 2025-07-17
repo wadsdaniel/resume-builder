@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import PersonalInfoForm from "../components/PersonalInfoForm";
+import PersonalInfoForm from "../components/forms/PersonalInfoForm";
 
 describe("PersonalInfoForm with RHF + Zod", () => {
   test("submits valid personal info with LinkedIn and DOB", async () => {

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import SkillsForm from "../components/SkillsForm";
+import SkillsForm from "../components/forms/SkillsForm";
 
 describe("SkillsForm with RHF + Zod", () => {
   test("allows adding multiple skills and submitting", async () => {
