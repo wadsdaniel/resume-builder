@@ -1,6 +1,8 @@
-import React from "react";
-
-export default function ResumePreview({ personalInfo, skills }) {
+export default function ResumePreview({
+  personalInfo,
+  skills,
+  professionalSummary,
+}) {
   const {
     firstName,
     lastName,
@@ -59,10 +61,23 @@ export default function ResumePreview({ personalInfo, skills }) {
       </div>
 
       {/* Right Column */}
-      <div className="w-2/3 bg-white p-6">
-        {/* We'll add Professional Summary, Experience, Education, Hobbies here later */}
+      <div className="w-2/3 bg-white p-6 space-y-6">
+        {/* Professional Summary */}
+        {professionalSummary && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2 uppercase">
+              Professional Summary
+            </h3>
+            <hr className="mb-2" />
+            <p className="text-sm text-gray-800 whitespace-pre-line">
+              {professionalSummary}
+            </p>
+          </div>
+        )}
+
+        {/* Placeholder for other sections */}
         <p className="text-gray-400 italic">
-          Right column content coming soon…
+          Experience and education coming soon…
         </p>
       </div>
     </div>

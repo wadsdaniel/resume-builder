@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import ResumePreview from "../components/ResumePreview";
 
 describe("ResumePreview Layout", () => {
-  test("renders personal info and skills in left column", () => {
+  test("renders personal info, skills, and professional summary correctly", () => {
     const personalInfo = {
       firstName: "Daniel",
       lastName: "Waduka",
@@ -17,14 +17,22 @@ describe("ResumePreview Layout", () => {
     };
 
     const skills = ["Leadership", "React", "Product Strategy"];
+    const professionalSummary =
+      "Experienced product manager with a passion for user-centered design and AI-assisted development.";
 
-    render(<ResumePreview personalInfo={personalInfo} skills={skills} />);
+    render(
+      <ResumePreview
+        personalInfo={personalInfo}
+        skills={skills}
+        professionalSummary={professionalSummary}
+      />
+    );
 
     // Check full name and title
-    expect(screen.getByText(/Daniel Waduka/i)).toBeInTheDocument();
-    expect(screen.getByText(/Product Manager/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Daniel Waduka/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Product Manager/i).length).toBeGreaterThan(0);
 
-    // Check contacts with textContent includes matcher
+    // Contact info matchers
     expect(
       screen.queryAllByText((_, el) => el.textContent.includes("+256700000000"))
         .length
@@ -51,9 +59,14 @@ describe("ResumePreview Layout", () => {
         .length
     ).toBeGreaterThan(0);
 
-    // Check skills
+    // Skills
     expect(screen.getByText("Leadership")).toBeInTheDocument();
     expect(screen.getByText("React")).toBeInTheDocument();
     expect(screen.getByText("Product Strategy")).toBeInTheDocument();
+
+    // Professional Summary
+    expect(
+      screen.getByText(/Experienced product manager with a passion/i)
+    ).toBeInTheDocument();
   });
 });
